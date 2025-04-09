@@ -1,12 +1,12 @@
-let storageArea = browser.storage.local;
+// Changed from browser.storage.local to chrome.storage.local
+let storageArea = chrome.storage.local;
 
 function restoreOptions() {
-  var gettingItem = storageArea.get([
-  	'mtzoom_shiftkey',
-  	'mtzoom_speed',
-  	'mtzoom_disableScrollbarsWhenZooming',
-  ]);
-  gettingItem.then((res) => {
+  storageArea.get([
+    'mtzoom_shiftkey',
+    'mtzoom_speed',
+    'mtzoom_disableScrollbarsWhenZooming',
+  ], (res) => {
     document.getElementById('mtzoom_shiftkey').checked = res.mtzoom_shiftkey != null ? res.mtzoom_shiftkey : true;
     document.getElementById('mtzoom_speed').value = res.mtzoom_speed != null ? res.mtzoom_speed : 5;
     document.getElementById('mtzoom_disableScrollbarsWhenZooming').checked = res.mtzoom_disableScrollbarsWhenZooming != null ? res.mtzoom_disableScrollbarsWhenZooming : false;
